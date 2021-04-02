@@ -1,0 +1,25 @@
+{
+    "name": "kuechenpate/brands",
+    "description": "Küchenpate : Brands Attributes",
+    "authors": [
+        {
+            "name": "Benjamin Knabe",
+            "email": "benjamin.knabe@kuechenpate.de"
+        }
+    ],
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "GPL-3.0",
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Kuechenpate\\Brands\\": ""
+        }
+    },
+    "repositories": {
+        "brands": {
+            "type": "git",
+            "url": "https://github.com/kuechenpate/Brands.git"
+        }
+    }
+}

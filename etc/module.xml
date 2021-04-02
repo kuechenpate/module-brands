@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2020 Merkur Möbel-Vertrieb GmbH. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Module/etc/module.xsd">
+    <module name="Kuechenpate_Brands" setup_version="1.0.0" data_version="1.0.0">
+        <sequence>
+            <module name="Mage_Eav" />
+        </sequence>
+    </module>
+</config>
