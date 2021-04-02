@@ -1,0 +1,2 @@
+# Brands
+Küchenpate Brands module
