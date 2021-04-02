@@ -28,7 +28,7 @@ class InstallSchema implements InstallSchemaInterface {
             )
             ->addColumn(
                 'name',
-                \Magento\Framework\DB\Ddl\Table::TYPE_VARCHAR,
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 null,
                 ['unsigned'=>true, 'nullable'=>false, 'length' => 256, 'comment' => 'Brand Name'],
                 'Brand Name'
