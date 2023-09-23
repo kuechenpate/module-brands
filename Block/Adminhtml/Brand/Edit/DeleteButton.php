@@ -8,6 +8,8 @@ use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 class DeleteButton implements ButtonProviderInterface
 {
+    protected $urlBuilder = null;
+    protected $registry = null;
     public function __construct(
         Context $context,
         Registry $registry
@@ -17,7 +19,7 @@ class DeleteButton implements ButtonProviderInterface
     }
     public function getButtonData() {
         if ($this->registry->registry('entity_id') > 0) {
-            $data = [
+            return [
                 'label' => __('Delete'),
                 'class' => 'delete',
                 'id' => 'brand-edit-delete-button',
@@ -28,7 +30,6 @@ class DeleteButton implements ButtonProviderInterface
                     'deleteConfirm(\'' . __("Are you sure you want to do this?") . '\', \'' . $this->getDeleteUrl() . '\')',
                 'sort_order' => 20,
             ];
-            return $data;
         }
     }
     public function getDeleteUrl() {

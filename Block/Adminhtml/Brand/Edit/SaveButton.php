@@ -8,7 +8,7 @@ class SaveButton implements ButtonProviderInterface
 {
     public function getButtonData()
     {
-        $data = [
+        return [
             'label' => __('Save'),
             'class' => 'save primary',
             'data_attribute' => [
@@ -17,6 +17,5 @@ class SaveButton implements ButtonProviderInterface
             ],
             'sort_order' => 60,
         ];
-        return $data;
     }
 }

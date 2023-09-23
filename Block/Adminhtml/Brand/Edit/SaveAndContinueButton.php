@@ -8,7 +8,7 @@ class SaveAndContinueButton implements ButtonProviderInterface
 {
     public function getButtonData()
     {
-        $data = [
+        return [
             'label' => __('Save and Continue Edit'),
             'class' => 'save',
             'data_attribute' => [
@@ -18,6 +18,5 @@ class SaveAndContinueButton implements ButtonProviderInterface
             ],
             'sort_order' => 50,
         ];
-        return $data;
     }
 }

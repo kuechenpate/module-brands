@@ -10,6 +10,8 @@ class BackButton implements ButtonProviderInterface
     /** [__construct desription]
     * @param Context $context [description]
     */
+    protected $urlBuilder = null;
+
     public function __construct(Context $context)
     {
         $this->urlBuilder = $context->getUrlBuilder();
