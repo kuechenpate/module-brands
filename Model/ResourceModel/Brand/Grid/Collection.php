@@ -20,6 +20,9 @@ use Psr\Log\LoggerInterface;
 class Collection extends BrandCollection implements SearchResultInterface
 {
     protected $aggregations;
+    protected $_eventPrefix;
+    protected $_eventObject;
+
     public function __construct(
         EntityFactory $entityFactory,
         LoggerInterface $logger,
