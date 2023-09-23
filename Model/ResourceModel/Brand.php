@@ -12,7 +12,7 @@ use Kuechenpate\Brands\Setup\BrandSetup;
 class Brand extends AbstractEntity
 {
     protected $_storeId = null;
-    protected $entityManager;
+    protected $_storeManager = null;
 
     public function __construct(
         Context $context,
