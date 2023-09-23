@@ -6,6 +6,6 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../app/code/Magento/Backend/etc/menu.xsd">
     <menu>
-        <add id="kuechenpate::brands" title="Brands" module="Kuechenpate_Brands" parent="kuechenpate::base" sortOrder="20" resource="Kuechenpate_Brands::sample" action="kuechenpate_brands/brand/"/>
+        <add id="Kuechenpate:Brands::brand" title="Brands" module="Kuechenpate_Brands" parent="kuechenpate::base" sortOrder="20" resource="Kuechenpate_Brands::brand" action="kuechenpate_brands/brand"/>
     </menu>
 </config>

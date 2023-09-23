@@ -1,0 +1,13 @@
+<?php
+/**
+ * @var $block \Kuechenpate\Brands\Block\Brand\Info
+ */
+$brandLogo = $block->getBannerUrl();
+$brandName = $block->getBrand()->getName();
+$brandLogoAlt = $block->getBrand()->getMetaTitle();
+?>
+<?php if($brandLogo != '') { ?>
+        <div class="kuechenpate-brand">
+            <img src="<?= $brandLogo ?>" alt="<?= $brandLogoAlt ?>" />
+        </div>
+<?php } ?>

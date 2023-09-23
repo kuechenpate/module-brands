@@ -1,51 +1,177 @@
 <?php
+
 namespace Kuechenpate\Brands\Setup;
+
+use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Setup\EavSetup;
 
-/*
-What's happening here is that we are extending from the
-\Magento\Eav\Setup\EavSetup class, thus effectively telling Magento
-we are about to create our own entity.
-We do so by overriding getDefaultEntities.
-
-The getDefaultEntities method returns an array of entities we want to register with Magento.
-Within our $entities array, the key $employeeEntity becomes an entry in the eav_entity_type table.
-
-Only a handful of metadata values are required to make our new entity type functional. The entity_model
-value should point to our EAV model resourcee class, not the model class.
-The table value should equal the name of our EAV entity table in the database.
-the attributes array should list any attribute we want crated on this entity.
-Attributes and their metadata get created in the eav_attribute table.
-
-What creates attributes and a new entity type is the array we just defined under the getDefaultEntities method.
-*/
 class BrandSetup extends EavSetup {
+    const ENTITY_TYPE_CODE = 'kuechenpate_brands_brand';
+
+    protected function getAttributes() {
+        $attributes = [];
+        $attributes['is_featured'] = [
+            'group' => 'General',
+            'type' => 'int',
+            'backend' => '',
+            'frontend' => '',
+            'label' => 'is featured',
+            'input' => 'boolean',
+            'source' => \Magento\Eav\Model\Entity\Attribute\Source\Boolean::class,
+            'global' => ScopedAttributeInterface::SCOPE_STORE,
+            'required' => '0',
+            'user_defined' => false,
+            'default' => '0',
+            'searchable' => false,
+            'filterable' => false,
+            'comparable' => false,
+            'visible_on_front' => false,
+            'used_in_product_listing' => false,
+            'unique' => false,
+            'position' => '1',
+            'visible' => '1',
+            'wysiwyg_enabled' => '0',
+        ];
+        $attributes['name'] = [
+            'group' => 'General',
+            'type' => 'varchar',
+            'label' => 'Brand name',
+            'input' => 'text',
+            'global' => ScopedAttributeInterface::SCOPE_STORE,
+            'required' => '1',
+            'user_defined' => false,
+            'default' => '',
+            'unique' => false,
+            'position' => '10',
+            'note' => '',
+            'visible' => '1',
+            'wysiwyg_enabled' => '0',
+        ];
+        $attributes['logo'] = [
+            'group' => 'General',
+            'type' => 'varchar',
+            'label' => 'Logo',
+            'input' => 'image',
+            'global' => ScopedAttributeInterface::SCOPE_STORE,
+            'required' => '0',
+            'user_defined' => false,
+            'default' => '',
+            'unique' => false,
+            'position' => '20',
+            'note' => '',
+            'visible' => '1',
+            'wysiwyg_enabled' => '0',
+        ];
+        $attributes['description'] = [
+            'group' => 'General',
+            'type' => 'text',
+            'label' => 'Description',
+            'input' => 'text',
+            'global' => ScopedAttributeInterface::SCOPE_STORE,
+            'required' => '0',
+            'user_defined' => false,
+            'default' => '',
+            'unique' => false,
+            'position' => '30',
+            'note' => '',
+            'visible' => '1',
+            'wysiwyg_enabled' => '1',
+        ];
+        $attributes['banner'] = [
+            'group' => 'General',
+            'type' => 'varchar',
+            'label' => 'Banner Image',
+            'input' => 'image',
+            'global' => ScopedAttributeInterface::SCOPE_STORE,
+            'required' => '0',
+            'user_defined' => false,
+            'default' => '',
+            'unique' => false,
+            'position' => '40',
+            'note' => '',
+            'visible' => '1',
+            'wysiwyg_enabled' => '0',
+        ];
+        $attributes['url_key'] = [
+            'group' => 'Search Engine Optimization',
+            'type' => 'varchar',
+            'label' => 'URL Key',
+            'input' => 'text',
+            'global' => ScopedAttributeInterface::SCOPE_STORE,
+            'frontend_class' => 'validate-length maximum-length-255',
+            'required' => '1',
+            'user_defined' => false,
+            'default' => '',
+            'unique' => false,
+            'position' => '50',
+            'note' => '',
+            'visible' => '1',
+            'wysiwyg_enabled' => '0',
+        ];
+        $attributes['meta_title'] = [
+            'group' => 'Search Engine Optimization',
+            'type' => 'varchar',
+            'label' => 'Meta Title',
+            'input' => 'text',
+            'global' => ScopedAttributeInterface::SCOPE_STORE,
+            'frontend_class' => 'validate-length maximum-length-255',
+            'required' => '0',
+            'user_defined' => false,
+            'default' => '',
+            'unique' => false,
+            'position' => '51',
+            'note' => '',
+            'visible' => '1',
+            'wysiwyg_enabled' => '0',
+        ];
+        $attributes['meta_keywords'] = [
+            'group' => 'Search Engine Optimization',
+            'type' => 'varchar',
+            'label' => 'Meta Keywords',
+            'input' => 'text',
+            'global' => ScopedAttributeInterface::SCOPE_STORE,
+            'frontend_class' => 'validate-length maximum-length-255',
+            'required' => '0',
+            'user_defined' => false,
+            'default' => '',
+            'unique' => false,
+            'position' => '52',
+            'note' => '',
+            'visible' => '1',
+            'wysiwyg_enabled' => '0',
+        ];
+        $attributes['meta_description'] = [
+            'group' => 'Search Engine Optimization',
+            'type' => 'varchar',
+            'label' => 'Meta Description',
+            'input' => 'text',
+            'global' => ScopedAttributeInterface::SCOPE_STORE,
+            'frontend_class' => 'validate-length maximum-length-255',
+            'required' => '0',
+            'user_defined' => false,
+            'default' => '',
+            'unique' => false,
+            'position' => '53',
+            'note' => 'max. 255 chars',
+            'visible' => '1',
+            'wysiwyg_enabled' => '0',
+        ];
+        // Add your more entity attributes here...
+        return $attributes;
+    }
 
     public function getDefaultEntities() {
-
-        $brandEntity = \Kuechenpate\Brands\Model\Brand::ENTITY;
-
         $entities = [
-            $brandEntity => [
-                'entity_model' => 'Kuechenpate\Brands\Model\ResourceModel\Brand', //the full resource model class name
-                'table' => $brandEntity . '_entity',
-                'attributes' => [
-                    'manufacturer_id' => [
-                        'type' => 'static',
-                    ],
-                    'name' => [
-                        'type' => 'static',
-                    ],
-                    'created_at' => [
-                        'type' => 'static',
-                    ],
-                    'updated_at' => [
-                        'type' => 'static',
-                    ],
-                ],
+            self::ENTITY_TYPE_CODE => [
+                'entity_model' => 'Kuechenpate\Brands\Model\ResourceModel\Brand',
+                'attribute_model' => 'Kuechenpate\Brands\Model\ResourceModel\Eav\Attribute',
+                'table' => self::ENTITY_TYPE_CODE,
+                'increment_model' => null,
+                'additional_attribute_table' => self::ENTITY_TYPE_CODE . '_eav_attribute',
+                'entity_attribute_collection' => 'Kuechenpate\Brands\Model\ResourceModel\Attribute\Collection',
+                'attributes' => $this->getAttributes(),
             ],
         ];
-
         return $entities;
     }
 }

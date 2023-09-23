@@ -1,25 +1,31 @@
 <?php
-/**
- * Copyright © 2020 Merkur Möbel-Vertrieb GmbH. All rights reserved.
- */
 
 namespace Kuechenpate\Brands\Controller\Adminhtml\Brand;
 
-class Index extends \Kuechenpate\Brands\Controller\Adminhtml\Brand
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\View\Result\PageFactory;
+
+class Index extends Action
 {
-    /**
-     * Items list.
-     *
-     * @return \Magento\Backend\Model\View\Result\Page
-     */
+    protected $resultPageFactory;
+    public function __construct(
+        Context $context,
+        PageFactory $resultPageFactory
+    ) {
+        parent::__construct($context);
+        $this->resultPageFactory = $resultPageFactory;
+    }
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Kuechenpate_Brands::brand');
+    }
     public function execute()
     {
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu('kuechenpate::brands');
-        $resultPage->getConfig()->getTitle()->prepend(__('Kuechenpate Brands'));
-        $resultPage->addBreadcrumb(__('Kuechenpate'), __('Kuechenpate'));
-        $resultPage->addBreadcrumb(__('Brands'), __('Brands'));
+        $resultPage->setActiveMenu('Kuechenpate_Brands::brand');
+        $resultPage->getConfig()->getTitle()->prepend(__('Brands'));
         return $resultPage;
     }
 }
