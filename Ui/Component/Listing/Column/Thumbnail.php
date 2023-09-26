@@ -18,6 +18,8 @@ class Thumbnail extends Column
      * @var \Magento\Store\Model\StoreManagerInterface
      */
     protected $storeManager;
+    private UrlInterface $urlBuilder;
+    private Image $imageHelper;
 
     /**
      * @param ContextInterface $context

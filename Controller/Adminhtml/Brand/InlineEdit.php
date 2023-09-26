@@ -10,6 +10,8 @@ use Kuechenpate\Brands\Model\ResourceModel\Brand\Collection;
 class InlineEdit extends Action
 {
     protected $brandCollection;
+    private JsonFactory $jsonFactory;
+
     public function __construct(
         Context $context,
         Collection $brandCollection,
