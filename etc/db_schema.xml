@@ -1,0 +1,424 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="kuechenpate_brands_brand" resource="default" engine="innodb" comment="Kuechenpate Brands Entity Table">
+        <column xsi:type="int" name="entity_id" unsigned="false" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="smallint" name="entity_type_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Entity Type ID"/>
+        <column xsi:type="smallint" name="attribute_set_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Attribute Set ID"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_ENTT_TYPE_ID_EAV_ENTT_TYPE_ENTT_TYPE_ID"
+                    table="kuechenpate_brands_brand" column="entity_type_id" referenceTable="eav_entity_type"
+                    referenceColumn="entity_type_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_ATTR_SET_ID_EAV_ATTR_SET_ATTR_SET_ID"
+                    table="kuechenpate_brands_brand" column="attribute_set_id" referenceTable="eav_attribute_set"
+                    referenceColumn="attribute_set_id" onDelete="CASCADE"/>
+        <index referenceId="KPT_BRS_BRD_ENTT_ID" indexType="btree">
+            <column name="entity_id"/>
+        </index>
+        <index referenceId="KPT_BRS_BRD_ENTT_TYPE_ID" indexType="btree">
+            <column name="entity_type_id"/>
+        </index>
+        <index referenceId="KPT_BRS_BRD_ATTR_SET_ID" indexType="btree">
+            <column name="attribute_set_id"/>
+        </index>
+    </table>
+    <table name="kuechenpate_brands_brand_eav_attribute" resource="default" engine="innodb" comment="Catalog EAV Attribute Table">
+        <column xsi:type="smallint" name="attribute_id" unsigned="true" nullable="false" identity="false"
+                comment="Attribute ID"/>
+        <column xsi:type="varchar" name="frontend_input_renderer" nullable="true" length="255"
+                comment="Frontend Input Renderer"/>
+        <column xsi:type="smallint" name="is_global" unsigned="true" nullable="false" identity="false"
+                default="1" comment="Is Global"/>
+        <column xsi:type="smallint" name="is_visible" unsigned="true" nullable="false" identity="false"
+                default="1" comment="Is Visible"/>
+        <column xsi:type="smallint" name="is_searchable" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Is Searchable"/>
+        <column xsi:type="smallint" name="is_filterable" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Is Filterable"/>
+        <column xsi:type="smallint" name="is_comparable" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Is Comparable"/>
+        <column xsi:type="smallint" name="is_visible_on_front" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Is Visible On Front"/>
+        <column xsi:type="smallint" name="is_html_allowed_on_front" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Is HTML Allowed On Front"/>
+        <column xsi:type="smallint" name="is_used_for_price_rules" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Is Used For Price Rules"/>
+        <column xsi:type="smallint" name="is_filterable_in_search" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Is Filterable In Search"/>
+        <column xsi:type="smallint" name="used_in_product_listing" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Is Used In Product Listing"/>
+        <column xsi:type="smallint" name="used_for_sort_by" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Is Used For Sorting"/>
+        <column xsi:type="varchar" name="apply_to" nullable="true" length="255" comment="Apply To"/>
+        <column xsi:type="smallint" name="is_visible_in_advanced_search" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Is Visible In Advanced Search"/>
+        <column xsi:type="int" name="position" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Position"/>
+        <column xsi:type="smallint" name="is_wysiwyg_enabled" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Is WYSIWYG Enabled"/>
+        <column xsi:type="smallint" name="is_used_for_promo_rules" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Is Used For Promo Rules"/>
+        <column xsi:type="smallint" name="is_required_in_admin_store" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Is Required In Admin Store"/>
+        <column xsi:type="smallint" name="is_used_in_grid" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Is Used in Grid"/>
+        <column xsi:type="smallint" name="is_visible_in_grid" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Is Visible in Grid"/>
+        <column xsi:type="smallint" name="is_filterable_in_grid" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Is Filterable in Grid"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="attribute_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_EAV_ATTR_ATTR_ID_EAV_ATTR_ATTR_ID"
+                    table="kuechenpate_brands_brand_eav_attribute" column="attribute_id" referenceTable="eav_attribute"
+                    referenceColumn="attribute_id" onDelete="CASCADE"/>
+        <index referenceId="KPT_BRS_BRD_EAV_ATTR_USED_FOR_SORT_BY" indexType="btree">
+            <column name="used_for_sort_by"/>
+        </index>
+        <index referenceId="KPT_BRS_BRD_EAV_ATTR_USED_IN_PRD_LISTING" indexType="btree">
+            <column name="used_in_product_listing"/>
+        </index>
+    </table>
+    <table name="kuechenpate_brands_brand_datetime" resource="default" engine="innodb"
+           comment="Kuechenpate Brands Brand Datetime Attribute Backend Table">
+        <column xsi:type="int" name="value_id" unsigned="false" nullable="false" identity="true"
+                comment="Value ID"/>
+        <column xsi:type="smallint" name="attribute_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Attribute ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store ID"/>
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Entity ID"/>
+        <column xsi:type="datetime" name="value" on_update="false" nullable="true" comment="Value"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="value_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_DTIME_ATTR_ID_EAV_ATTR_ATTR_ID"
+                    table="kuechenpate_brands_brand_datetime" column="attribute_id" referenceTable="eav_attribute"
+                    referenceColumn="attribute_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_DTIME_ENTT_ID_CAT_PRD_ENTT_ENTT_ID"
+                    table="kuechenpate_brands_brand_datetime" column="entity_id" referenceTable="kuechenpate_brands_brand"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_DATETIME_STORE_ID_STORE_STORE_ID"
+                    table="kuechenpate_brands_brand_datetime" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="KPT_BRS_BRD_DATETIME_ENTITY_ID_ATTRIBUTE_ID_STORE_ID">
+            <column name="entity_id"/>
+            <column name="attribute_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <index referenceId="KPT_BRS_BRD_DATETIME_ATTRIBUTE_ID" indexType="btree">
+            <column name="attribute_id"/>
+        </index>
+        <index referenceId="KPT_BRS_BRD_DATETIME_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+    <table name="kuechenpate_brands_brand_decimal" resource="default" engine="innodb"
+           comment="Kuechenpate Brands Brand Decimal Attribute Backend Table">
+        <column xsi:type="int" name="value_id" unsigned="false" nullable="false" identity="true"
+                comment="Value ID"/>
+        <column xsi:type="smallint" name="attribute_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Attribute ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store ID"/>
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Entity ID"/>
+        <column xsi:type="decimal" name="value" scale="6" precision="20" unsigned="false" nullable="true"
+                comment="Value"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="value_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_DEC_ATTR_ID_EAV_ATTR_ATTR_ID"
+                    table="kuechenpate_brands_brand_decimal" column="attribute_id" referenceTable="eav_attribute"
+                    referenceColumn="attribute_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_DEC_ENTT_ID_KPT_BRS_BRD_ENTT_ID"
+                    table="kuechenpate_brands_brand_decimal" column="entity_id" referenceTable="kuechenpate_brands_brand"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_DEC_STORE_ID_STORE_STORE_ID"
+                    table="kuechenpate_brands_brand_decimal" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="KPT_BRS_BRD_DEC_ENTT_ID_ATTR_ID_STORE_ID">
+            <column name="entity_id"/>
+            <column name="attribute_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <index referenceId="KPT_BRS_BRD_DECIMAL_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+        <index referenceId="KPT_BRS_BRD_DECIMAL_ATTRIBUTE_ID" indexType="btree">
+            <column name="attribute_id"/>
+        </index>
+    </table>
+    <table name="kuechenpate_brands_brand_int" resource="default" engine="innodb"
+           comment="Kuechenpate Brands Brand Integer Attribute Backend Table">
+        <column xsi:type="int" name="value_id" unsigned="false" nullable="false" identity="true"
+                comment="Value ID"/>
+        <column xsi:type="smallint" name="attribute_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Attribute ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store ID"/>
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Entity ID"/>
+        <column xsi:type="int" name="value" unsigned="false" nullable="true" identity="false"
+                comment="Value"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="value_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_INT_ATTR_ID_EAV_ATTR_ATTR_ID"
+                    table="kuechenpate_brands_brand_int" column="attribute_id" referenceTable="eav_attribute"
+                    referenceColumn="attribute_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_INT_ENTT_ID_KPT_BRS_BRD_ENTT_ID"
+                    table="kuechenpate_brands_brand_int" column="entity_id" referenceTable="kuechenpate_brands_brand"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_INT_STORE_ID_STORE_STORE_ID"
+                    table="kuechenpate_brands_brand_int" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="CKPT_BRS_BRD_INT_ENTT_ID_ATTR_ID_STORE_ID">
+            <column name="entity_id"/>
+            <column name="attribute_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <index referenceId="KPT_BRS_BRD_INT_ATTRIBUTE_ID" indexType="btree">
+            <column name="attribute_id"/>
+        </index>
+        <index referenceId="KPT_BRS_BRD_INT_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+        <index referenceId="KPT_BRS_BRD_INT_ATTRIBUTE_ID_STORE_ID_VALUE" indexType="btree">
+            <column name="attribute_id"/>
+            <column name="store_id"/>
+            <column name="value"/>
+        </index>
+    </table>
+    <table name="kuechenpate_brands_brand_text" resource="default" engine="innodb"
+           comment="Kuechenpate Brands Brand Text Attribute Backend Table">
+        <column xsi:type="int" name="value_id" unsigned="false" nullable="false" identity="true"
+                comment="Value ID"/>
+        <column xsi:type="smallint" name="attribute_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Attribute ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store ID"/>
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Entity ID"/>
+        <column xsi:type="mediumtext" name="value" nullable="true" comment="Value"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="value_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_TEXT_ATTR_ID_EAV_ATTR_ATTR_ID"
+                    table="kuechenpate_brands_brand_text" column="attribute_id" referenceTable="eav_attribute"
+                    referenceColumn="attribute_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_TEXT_ENTT_ID_KPT_BRS_BRD_ENTT_ID"
+                    table="kuechenpate_brands_brand_text" column="entity_id" referenceTable="kuechenpate_brands_brand"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_TEXT_STORE_ID_STORE_STORE_ID"
+                    table="kuechenpate_brands_brand_text" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="KPT_BRS_BRD_TEXT_ENTT_ID_ATTR_ID_STORE_ID">
+            <column name="entity_id"/>
+            <column name="attribute_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <index referenceId="KPT_BRS_BRD_TEXT_ATTR_ID" indexType="btree">
+            <column name="attribute_id"/>
+        </index>
+        <index referenceId="KPT_BRS_BRD_TEXT_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+    <table name="kuechenpate_brands_brand_varchar" resource="default" engine="innodb"
+           comment="Kuechenpate Brands Brand Varchar Attribute Backend Table">
+        <column xsi:type="int" name="value_id" unsigned="false" nullable="false" identity="true"
+                comment="Value ID"/>
+        <column xsi:type="smallint" name="attribute_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Attribute ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store ID"/>
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Entity ID"/>
+        <column xsi:type="varchar" name="value" nullable="true" length="255" comment="Value"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="value_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_VCHR_ATTR_ID_EAV_ATTR_ATTR_ID"
+                    table="kuechenpate_brands_brand_varchar" column="attribute_id" referenceTable="eav_attribute"
+                    referenceColumn="attribute_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_VCHR_ENTT_ID_KPT_BRS_BRD_ENTT_ID"
+                    table="kuechenpate_brands_brand_varchar" column="entity_id" referenceTable="kuechenpate_brands_brand"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_VCHR_STORE_ID_STORE_STORE_ID"
+                    table="kuechenpate_brands_brand_varchar" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="KPT_BRS_BRD_VCHR_ENTT_ID_ATTR_ID_STORE_ID">
+            <column name="entity_id"/>
+            <column name="attribute_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <index referenceId="KPT_BRS_BRD_VCHR_ATTR_ID" indexType="btree">
+            <column name="attribute_id"/>
+        </index>
+        <index referenceId="KPT_BRS_BRD_VCHR_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+    <table name="kuechenpate_brands_brand_gallery" resource="default" engine="innodb"
+           comment="Kuechenpate Brands Gallery Attribute Backend Table">
+        <column xsi:type="int" name="value_id" unsigned="false" nullable="false" identity="true"
+                comment="Value ID"/>
+        <column xsi:type="smallint" name="attribute_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Attribute ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store ID"/>
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Entity ID"/>
+        <column xsi:type="int" name="position" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Position"/>
+        <column xsi:type="varchar" name="value" nullable="true" length="255" comment="Value"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="value_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_GLR_ATTR_ID_EAV_ATTR_ATTR_ID"
+                    table="kuechenpate_brands_brand_gallery" column="attribute_id" referenceTable="eav_attribute"
+                    referenceColumn="attribute_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_GALLERY_ENTT_ID_KPT_BRS_BRD_ENTT_ID"
+                    table="kuechenpate_brands_brand_gallery" column="entity_id" referenceTable="kuechenpate_brands_brand"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_GLR_STORE_ID_STORE_STORE_ID"
+                    table="kuechenpate_brands_brand_gallery" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="KPT_BRS_BRD_GLR_ENTT_ID_ATTR_ID_STORE_ID">
+            <column name="entity_id"/>
+            <column name="attribute_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <index referenceId="KPT_BRS_BRD_GLR_ENTT_ID" indexType="btree">
+            <column name="entity_id"/>
+        </index>
+        <index referenceId="KPT_BRS_BRD_GLR_ATTR_ID" indexType="btree">
+            <column name="attribute_id"/>
+        </index>
+        <index referenceId="KPT_BRS_BRD_GLR_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+    <table name="kuechenpate_brands_brand_media_gallery" resource="default" engine="innodb"
+           comment="Kuechenpate Brands Media Gallery Attribute Backend Table">
+        <column xsi:type="int" name="value_id" unsigned="true" nullable="false" identity="true"
+                comment="Value ID"/>
+        <column xsi:type="smallint" name="attribute_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Attribute ID"/>
+        <column xsi:type="varchar" name="value" nullable="true" length="255" comment="Value"/>
+        <column xsi:type="varchar" name="media_type" nullable="false" length="32" default="image"
+                comment="Media entry type"/>
+        <column xsi:type="smallint" name="disabled" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Visibility status"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="value_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_MDA_GLR_ATTR_ID_EAV_ATTR_ATTR_ID"
+                    table="kuechenpate_brands_brand_media_gallery" column="attribute_id" referenceTable="eav_attribute"
+                    referenceColumn="attribute_id" onDelete="CASCADE"/>
+        <index referenceId="KPT_BRS_BRD_MDA_GLR_ATTRIBUTE_ID" indexType="btree">
+            <column name="attribute_id"/>
+        </index>
+    </table>
+    <table name="kuechenpate_brands_brand_media_gallery_value" resource="default" engine="innodb"
+           comment="Kuechenpate Brands Media Gallery Attribute Value Table">
+        <column xsi:type="int" name="value_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Value ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store ID"/>
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Entity ID"/>
+        <column xsi:type="varchar" name="label" nullable="true" length="255" comment="Label"/>
+        <column xsi:type="int" name="position" unsigned="true" nullable="true" identity="false"
+                comment="Position"/>
+        <column xsi:type="smallint" name="disabled" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Is Disabled"/>
+        <column xsi:type="int" name="record_id" unsigned="true" nullable="false" identity="true"
+                comment="Record ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="record_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_MDA_GLR_VAL_VAL_ID_KPT_BRS_BRD_MDA_GLR_VAL_ID"
+                    table="kuechenpate_brands_brand_media_gallery_value" column="value_id"
+                    referenceTable="kuechenpate_brands_brand_media_gallery" referenceColumn="value_id"
+                    onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KUP_BRD_BRDS_MDA_GLR_VAL_STORE_ID_STORE_STORE_ID"
+                    table="kuechenpate_brands_brand_media_gallery_value" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KUP_BRD_BRDS_MDA_GLR_VAL_ENTT_ID_KPT_BRS_BRD_ENTT_ID"
+                    table="kuechenpate_brands_brand_media_gallery_value" column="entity_id"
+                    referenceTable="kuechenpate_brands_brand" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <index referenceId="KPT_BRS_BRD_MDA_GLR_VAL_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+        <index referenceId="KPT_BRS_BRD_MDA_GLR_VAL_ENTT_ID" indexType="btree">
+            <column name="entity_id"/>
+        </index>
+        <index referenceId="KPT_BRS_BRD_MDA_GLR_VAL_VALUE_ID" indexType="btree">
+            <column name="value_id"/>
+        </index>
+        <index referenceId="KPT_BRS_BRD_MDA_GLR_VAL_ENTT_ID_VAL_ID_STORE_ID" indexType="btree">
+            <column name="entity_id"/>
+            <column name="value_id"/>
+            <column name="store_id"/>
+        </index>
+    </table>
+    <table name="kuechenpate_brands_brand_media_gallery_value_to_entity" resource="default" engine="innodb"
+           comment="Link Media value to Product entity table">
+        <column xsi:type="int" name="value_id" unsigned="true" nullable="false" identity="false"
+                comment="Value media Entry ID"/>
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="false"
+                comment="Product Entity ID"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_MDA_GLR_VAL_TO_ENTT_VAL_ID_KPT_BRS_BRD_MDA_GLR_VAL_ID"
+                    table="kuechenpate_brands_brand_media_gallery_value_to_entity" column="value_id"
+                    referenceTable="kuechenpate_brands_brand_media_gallery" referenceColumn="value_id"
+                    onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_MDA_GLR_VAL_TO_ENTT_ENTT_ID_KPT_BRS_BRD_ENTT_ID"
+                    table="kuechenpate_brands_brand_media_gallery_value_to_entity" column="entity_id"
+                    referenceTable="kuechenpate_brands_brand" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="primary" referenceId="KPT_BRS_BRD_MDA_GLR_VAL_TO_ENTT_VAL_ID_ENTT_ID">
+            <column name="value_id"/>
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+    <table name="kuechenpate_brands_brand_media_gallery_value_video" resource="default" engine="innodb"
+           comment="Catalog Product Video Table">
+        <column xsi:type="int" name="value_id" unsigned="true" nullable="false" identity="false"
+                comment="Media Entity ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store ID"/>
+        <column xsi:type="varchar" name="provider" nullable="true" length="32" comment="Video provider ID"/>
+        <column xsi:type="text" name="url" nullable="true" comment="Video URL"/>
+        <column xsi:type="varchar" name="title" nullable="true" length="255" comment="Title"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Page Meta Description"/>
+        <column xsi:type="text" name="metadata" nullable="true" comment="Video meta data"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_MDA_GLR_VAL_VID_VAL_ID_KPT_BRS_BRD_MDA_GLR_VAL_ID"
+                    table="kuechenpate_brands_brand_media_gallery_value_video" column="value_id"
+                    referenceTable="kuechenpate_brands_brand_media_gallery" referenceColumn="value_id"
+                    onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="KPT_BRS_BRD_MDA_GLR_VAL_VIDEO_STORE_ID_STORE_STORE_ID"
+                    table="kuechenpate_brands_brand_media_gallery_value_video" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="primary" referenceId="KPT_BRS_BRD_MDA_GLR_VAL_VIDEO_VAL_ID_STORE_ID">
+            <column name="value_id"/>
+            <column name="store_id"/>
+        </constraint>
+    </table>
+</schema>
